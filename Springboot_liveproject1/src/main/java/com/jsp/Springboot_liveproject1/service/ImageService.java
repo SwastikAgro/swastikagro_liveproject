@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.jsp.Springboot_liveproject1.dao.ImageDao;
 import com.jsp.Springboot_liveproject1.dao.UserDao;
 import com.jsp.Springboot_liveproject1.entity.Image;
@@ -15,10 +14,6 @@ import com.jsp.Springboot_liveproject1.entity.User;
 import com.jsp.Springboot_liveproject1.exception.ImageNotFound;
 import com.jsp.Springboot_liveproject1.exception.UserNotFound;
 import com.jsp.Springboot_liveproject1.util.ResponseStructure;
-
-
-
-
 
 @Service
 public class ImageService {

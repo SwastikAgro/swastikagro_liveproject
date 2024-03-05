@@ -10,10 +10,13 @@ import com.jsp.Springboot_liveproject1.entity.UserDetails;
 import com.jsp.Springboot_liveproject1.repo.UserRepo;
 
 
+
 @Repository
 public class UserDao {
 	@Autowired
 	private UserRepo repo;
+	@Autowired
+	private AddressDao aDao;
 
 	public User saveUser(User details) {
 		
@@ -65,8 +68,10 @@ public class UserDao {
 			if(user.getAge()==0){
 				user.setAge(m.getAge());
 			}
-			if (user.getAddress() != null) {
+			if(user.getAddress()==null) {
 				user.setAddress(m.getAddress());
+			}if(user.getAddress()!=null) {
+				user.setAddress(aDao.saveAddress(null));
 			}
 			
 			return repo.save(user);
