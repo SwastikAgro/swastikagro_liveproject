@@ -50,5 +50,10 @@ public class UserController {
 	public ResponseEntity<ResponseStructure<User>> loginUser(@RequestBody User user) {
 		return userService.loginUser(user);
 	}
+	@GetMapping("/otp")
+	public ResponseEntity<ResponseStructure<Integer>> otpSend(@RequestParam String email){
+		System.out.println("hello");
+		return userService.otp(email);
+	}
 	
 }

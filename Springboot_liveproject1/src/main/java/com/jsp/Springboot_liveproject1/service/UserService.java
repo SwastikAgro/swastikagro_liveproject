@@ -1,6 +1,7 @@
 package com.jsp.Springboot_liveproject1.service;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import com.jsp.Springboot_liveproject1.exception.EmailWrongException;
 import com.jsp.Springboot_liveproject1.exception.PasswordWrongException;
 import com.jsp.Springboot_liveproject1.exception.UserNotFound;
 import com.jsp.Springboot_liveproject1.util.ResponseStructure;
+
 
 
 
@@ -98,6 +100,31 @@ public class UserService {
 			throw new PasswordWrongException();
 		}
 		throw new EmailWrongException();
+	}
+	public String sendSimpleMail(String email,String msg,String subject) {
+		SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
+		simpleMailMessage.setFrom("k.anupumajba@gmail.com");
+		simpleMailMessage.setSubject(subject);
+		simpleMailMessage.setTo(email);
+		simpleMailMessage.setText(msg);
+		javaMailSender.send(simpleMailMessage);
+		return"register successfully.....!";
+	}
+	public ResponseEntity<ResponseStructure<Integer>> otp(String email){
+		User db=dao.fetchByEmail(email);
+		if(db!=null) {
+			Random random=new Random();
+			int value=random.nextInt(900000);
+			ResponseStructure<Integer> r=new ResponseStructure<Integer>();
+			r.setStatus(HttpStatus.CONTINUE.value());
+			r.setMessage("OTP for Password");
+			r.setData(value);
+			String subject="Welcome to live project agro otp Generation....!";
+			sendSimpleMail(email,"OTP for Password Verification:"+value,subject);
+			return new ResponseEntity<ResponseStructure<Integer>>(r,HttpStatus.CONTINUE);
+		}else {
+			throw new UserNotFound("User not found for email: "+email);
+		}
 	}
 
 }
