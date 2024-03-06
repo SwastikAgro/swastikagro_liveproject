@@ -70,8 +70,6 @@ public class UserDao {
 			}
 			if(user.getAddress()==null) {
 				user.setAddress(m.getAddress());
-			}if(user.getAddress()!=null) {
-				user.setAddress(aDao.saveAddress(null));
 			}
 			
 			return repo.save(user);

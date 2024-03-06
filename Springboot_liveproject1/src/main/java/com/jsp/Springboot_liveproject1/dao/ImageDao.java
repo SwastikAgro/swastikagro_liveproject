@@ -12,9 +12,6 @@ import com.jsp.Springboot_liveproject1.entity.User;
 import com.jsp.Springboot_liveproject1.repo.ImageRepo;
 import com.jsp.Springboot_liveproject1.repo.UserRepo;
 
-
-
-
 @Repository
 public class ImageDao {
 	@Autowired
