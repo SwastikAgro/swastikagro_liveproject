@@ -80,6 +80,14 @@ public class ImageService {
 			throw new ImageNotFound("Image not found for id : "+id);
 		
 	}
+	public ResponseEntity<byte[]> getImage(@RequestParam int id) {
+      byte[] imageBytes = idao.fetchById(id).getPic();
+
+      // Set appropriate content type (e.g., image/jpeg)
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.IMAGE_JPEG);
+     return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
+  }
 	
 	
 	

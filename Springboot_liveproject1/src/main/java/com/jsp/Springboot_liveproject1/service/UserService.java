@@ -36,6 +36,18 @@ public class UserService {
 		javaMailSender.send(mailMessage);
 		return "Mail Sent Successfully";
 	}
+	public ResponseEntity<ResponseStructure<User>> register(User u){
+		ResponseStructure<User> r=new ResponseStructure<User>();
+		r.setData(dao.saveUser(u));
+		r.setMessage("RegisterSuccessfully.........!");
+		r.setStatus(HttpStatus.CONTINUE.value());
+		String email=u.getEmail();
+		String subject="Welcome to live project agro....!";
+		if(email!=null) {
+			sendSimpleMail(email,u.getFirstName()+u.getLastName()+"Register Successfully.....!",subject);
+		}
+		return new ResponseEntity<ResponseStructure<User>>(r,HttpStatus.CONTINUE);
+	}
 	
 	public ResponseEntity<ResponseStructure<User>> saveUser(User user) {
 		ResponseStructure<User> m=new ResponseStructure<User>();

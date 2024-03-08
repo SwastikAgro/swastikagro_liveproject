@@ -32,8 +32,8 @@ public class UserDao {
 		
 	}
 	public User deleteUser(int id) {
-		Optional<User> db	=repo.findById(id);
-		if(db.isPresent()) {
+		Optional<User> db=repo.findById(id);
+		if(db.isPresent()){
 			repo.deleteById(id);
 			return db.get();
 		}

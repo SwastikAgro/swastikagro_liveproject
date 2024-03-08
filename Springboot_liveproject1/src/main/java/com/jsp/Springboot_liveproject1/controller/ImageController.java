@@ -46,14 +46,19 @@ public class ImageController {
 		System.out.println("controller");
 		return service.updateImage(id,description,file);
 	}
+//	@GetMapping("/image")
+//	public ResponseEntity<byte[]> getImage(@RequestParam int id) {
+//        byte[] imageBytes = dao.fetchById(id).getPic();
+//
+//        // Set appropriate content type (e.g., image/jpeg)
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.IMAGE_JPEG);
+//        return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
+//    }
 	@GetMapping("/image")
-	public ResponseEntity<byte[]> getImage(@RequestParam int id) {
-        byte[] imageBytes = dao.fetchById(id).getPic();
-
-        // Set appropriate content type (e.g., image/jpeg)
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_JPEG);
-        return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
-    }
+	public ResponseEntity<byte[]> getImage(@RequestParam int id){
+		return service.getImage(id);
+	}
+	
 
 }

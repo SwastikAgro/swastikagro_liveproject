@@ -22,27 +22,28 @@ import com.jsp.Springboot_liveproject1.util.ResponseStructure;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	@GetMapping("/mail")//mail
-	public String sendMail(@RequestBody UserDetails details) {
-		return userService.sendSimpleMail(details);
+	
+	@PostMapping("/register")
+	public ResponseEntity<ResponseStructure<User>> register(@RequestBody User u){
+		return userService.register(u);
 	}
-	@PostMapping("/user")//save
+	@PostMapping("/save")//save
 	public ResponseEntity<ResponseStructure<User>> saveUser(@RequestBody User user){
 		return userService.saveUser(user);
 	}
-	@GetMapping("/user")//fetch by id
+	@GetMapping("/fetchById")//fetch by id
 	public ResponseEntity<ResponseStructure<User>> fetchUser(@RequestParam int id){
 		return userService.fetchUser(id);
 	}
-	@GetMapping("/getUser")//fetch all
+	@GetMapping("/fetchUser")//fetch all
 	public List<User> fetchAll(){
 		return userService.fetchAll();
 	}
-	@DeleteMapping("/user")//delete
+	@DeleteMapping("/delete")//delete
 	public ResponseEntity<ResponseStructure<User>> deleteUser(@RequestParam int id){
 		return userService.deleteById(id);
 	}
-	@PutMapping("/user")//update
+	@PutMapping("/update")//update
 	public ResponseEntity<ResponseStructure<User>> updateUser(@RequestBody User user){
 		return userService.updateUser(user);
 	}

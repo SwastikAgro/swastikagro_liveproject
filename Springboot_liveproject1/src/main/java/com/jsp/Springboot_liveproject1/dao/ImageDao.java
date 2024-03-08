@@ -66,6 +66,10 @@ public class ImageDao {
 		}
 		return null;
 	}
+	public Image createImage(Image image) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }
