@@ -1,9 +1,12 @@
 package com.jsp.Springboot_liveproject1.entity;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
+
+import java.time.LocalTime;
 import java.util.List;
+
+import org.springframework.stereotype.Component;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -19,7 +22,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Post {
+@Component
+public class Post{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -28,7 +32,9 @@ public class Post {
 	private int likes;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comment;
-	private LocalDateTime date;
+	private LocalDate date;
+	private LocalTime time;
 	private String caption;
 	private String location;
+	
 }

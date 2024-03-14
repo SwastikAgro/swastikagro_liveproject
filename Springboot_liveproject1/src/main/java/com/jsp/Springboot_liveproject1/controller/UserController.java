@@ -22,7 +22,6 @@ import com.jsp.Springboot_liveproject1.util.ResponseStructure;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
 	@PostMapping("/register")
 	public ResponseEntity<ResponseStructure<User>> register(@RequestBody User u){
 		return userService.register(u);
@@ -32,8 +31,8 @@ public class UserController {
 		return userService.saveUser(user);
 	}
 	@GetMapping("/fetchById")//fetch by id
-	public ResponseEntity<ResponseStructure<User>> fetchUser(@RequestParam int id){
-		return userService.fetchUser(id);
+	public ResponseEntity<ResponseStructure<User>> fetchById(@RequestParam int id){
+		return userService.fetchById(id);
 	}
 	@GetMapping("/fetchUser")//fetch all
 	public List<User> fetchAll(){

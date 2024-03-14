@@ -56,8 +56,8 @@ public class UserService {
 		m.setStatus(HttpStatus.CREATED.value());
 		return new ResponseEntity<ResponseStructure<User>>(m,HttpStatus.CREATED);
 	}
-	public ResponseEntity<ResponseStructure<User>> fetchUser(int id){
-		User db=dao.fetchUser(id);
+	public ResponseEntity<ResponseStructure<User>> fetchById(int id){
+		User db=dao.fetchById(id);
 		if(db!=null) {
 
 			ResponseStructure<User> m=new ResponseStructure<User>();
@@ -87,7 +87,7 @@ public class UserService {
 		}
 	}
 	public ResponseEntity<ResponseStructure<User>> updateUser(User user){
-		User db = dao.fetchUser(user.getId());
+		User db = dao.fetchById(user.getId());
 		if(db!=null) {
 			ResponseStructure<User> m=new ResponseStructure<User>();
 			m.setData(dao.updateUser(user));

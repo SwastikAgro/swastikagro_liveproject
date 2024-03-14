@@ -22,54 +22,47 @@ public class ImageDao {
 	private UserDao userdao;
 	@Autowired
 	private UserRepo userRepo;
-	
-	public Image uploadProfile(String description,MultipartFile file) throws IOException {
-		i.setDescription(description);
-		i.setPic(file.getBytes());
-		return irepo.save(i);
-		
-		
+
+	public Image uploadProfile(Image image) {
+		return irepo.save(image);
 	}
+
 	public Image fetchById(int id) {
 		Optional<Image> db = irepo.findById(id);
-		if(db.isPresent())
+		if (db.isPresent())
 			return db.get();
 		else
 			return null;
-	
+
 	}
+
 	public Image deleteById(int id) {
 		Optional<Image> db = irepo.findById(id);
-		if(db.isPresent()) {
-			Image imageDb=db.get();
-			 User userdb = userRepo.fetchByImage(imageDb);
-			 userdb.setImage(null);
-			 userdao.updateUser(userdb);
-		irepo.deleteById(id);
-		return imageDb;
-		}
-		else 
+		if (db.isPresent()) {
+			Image imageDb = db.get();
+			User userdb = userRepo.fetchByImage(imageDb);
+			userdb.setImage(null);
+			userdao.updateUser(userdb);
+			irepo.deleteById(id);
+			return imageDb;
+		} else
 			return null;
 	}
-	public Image updateImage(int id,String description,MultipartFile file) throws IOException {
+
+	public Image updateImage(int id, String description, MultipartFile file) throws IOException {
 		Optional<Image> db = irepo.findById(id);
-		if(db.isPresent()) {
-			Image imageDb=db.get();
-			if(description!=null) {
-			imageDb.setDescription(description);
+		if (db.isPresent()) {
+			Image imageDb = db.get();
+			if (description != null) {
+				imageDb.setDescription(description);
 			}
-			if(file!=null) {
+			if (file != null) {
 				imageDb.setPic(imageDb.getPic());
 			}
 			return irepo.save(imageDb);
-			
+
 		}
 		return null;
 	}
-	public Image createImage(Image image) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 
 }
