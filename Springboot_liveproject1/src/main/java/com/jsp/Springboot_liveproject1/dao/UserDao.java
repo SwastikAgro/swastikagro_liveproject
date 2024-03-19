@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.jsp.Springboot_liveproject1.entity.User;
-import com.jsp.Springboot_liveproject1.entity.UserDetails;
 import com.jsp.Springboot_liveproject1.repo.UserRepo;
 
 @Repository
@@ -19,9 +18,7 @@ public class UserDao {
 
 		return repo.save(details);
 	}
-
 	public User fetchById(int id) {
-
 		Optional<User> userDb = repo.findById(id);
 		if (userDb.isPresent()) {
 			return userDb.get();
@@ -91,7 +88,6 @@ public class UserDao {
 	public List<User> fetchAll() {
 		return repo.findAll();
 	}
-
 	public User fetchByEmail(String email) {
 		User db = repo.fetchByEmail(email);
 		if (db != null) {
@@ -99,6 +95,5 @@ public class UserDao {
 		} else {
 			return null;
 		}
-	}
-
+	}	
 }

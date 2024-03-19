@@ -115,7 +115,7 @@ public class UserService {
 	}
 	public String sendSimpleMail(String email,String msg,String subject) {
 		SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
-		simpleMailMessage.setFrom("k.anupumajba@gmail.com");
+		simpleMailMessage.setFrom("swastikagro86@gmail.com");
 		simpleMailMessage.setSubject(subject);
 		simpleMailMessage.setTo(email);
 		simpleMailMessage.setText(msg);
@@ -131,11 +131,12 @@ public class UserService {
 			r.setStatus(HttpStatus.CONTINUE.value());
 			r.setMessage("OTP for Password");
 			r.setData(value);
+			String email1=email;
 			String subject="Welcome to live project agro otp Generation....!";
 			sendSimpleMail(email,"OTP for Password Verification:"+value,subject);
 			return new ResponseEntity<ResponseStructure<Integer>>(r,HttpStatus.CONTINUE);
 		}else {
-			throw new UserNotFound("User not found for email: "+email);
+			throw new EmailWrongException("User not found for email: "+email);
 		}
 	}
 
