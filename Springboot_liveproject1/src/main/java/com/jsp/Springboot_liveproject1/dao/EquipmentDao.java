@@ -50,7 +50,10 @@ public class EquipmentDao {
 			if(equipment.getCostperhr()==0) {
 				equipment.setCostperhr(data.getCostperhr());;
 			}
-			return erepo.save(data);
+			if(equipment.getUser()==null) {
+				equipment.setUser(data.getUser());
+			}
+			return erepo.save(equipment);
 		}
 		else {
 			return null;

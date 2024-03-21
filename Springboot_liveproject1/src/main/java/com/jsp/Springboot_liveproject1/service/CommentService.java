@@ -50,6 +50,17 @@ public class CommentService {
 			throw new PostNotFound("post not found for pid:"+pid);
 		
 	}
-	
-
+	public ResponseEntity<ResponseStructure<Comment>> deleteComment(int commentId){
+		Comment db = dao.deleteComment(commentId);
+		if(db!=null) {
+			ResponseStructure<Comment> r= new ResponseStructure<Comment>();
+			r.setData(db);
+			r.setMessage("deleted successfully");
+			r.setStatus(HttpStatus.GONE.value());
+			return new ResponseEntity<ResponseStructure<Comment>>(r,HttpStatus.GONE);
+		}
+		else {
+			throw new UserNotFound();
+		}
+	}
 }

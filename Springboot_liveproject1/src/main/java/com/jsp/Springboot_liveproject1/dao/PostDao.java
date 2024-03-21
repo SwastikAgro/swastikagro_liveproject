@@ -40,5 +40,30 @@ public class PostDao{
 		}
 		
 	}	
+	public Post updatePost(Post post){
+		Optional<Post> db = postRepo.findById(post.getId()); 
+		if(db.isPresent()) {
+			Post data = db.get();
+			if(post.getComment()==null) {
+				post.setComment(data.getComment());
+			}
+			if(post.getCaption()==null) {
+				post.setCaption(data.getCaption());
+			}
+			if(post.getLocation()==null) {
+				post.setLocation(data.getLocation());
+			}
+			if(post.getDate()==null) {
+				post.setDate(data.getDate());
+			}
+			if(post.getTime()==null) {
+				post.setTime(data.getTime());
+			}
+			return postRepo.save(data);
+		}
+		else {
+			return null;
+		}
+	}
 
 }

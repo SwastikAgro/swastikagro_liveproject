@@ -2,6 +2,7 @@ package com.jsp.Springboot_liveproject1.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,10 @@ public class CommentController {
 	@PostMapping("/saveComment")
 	public ResponseEntity<ResponseStructure<Comment>> saveComment(@RequestParam int pid,@RequestParam int uid,@RequestParam String  msg){
 		return service.saveComment(pid,uid,msg);
+	}
+	@DeleteMapping("/deletecomm")
+	public ResponseEntity<ResponseStructure<Comment>> deleteComment(@RequestParam int id){
+		return service.deleteComment(id);
 	}
 
 }

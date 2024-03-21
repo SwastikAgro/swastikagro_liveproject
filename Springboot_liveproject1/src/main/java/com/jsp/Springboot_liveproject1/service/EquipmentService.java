@@ -75,10 +75,10 @@ public class EquipmentService {
 		}
 	}
 	public ResponseEntity<ResponseStructure<Equipment>> updateEquipment(Equipment equipment){
-		Equipment db = edao.updateEquipment(equipment);
+		Equipment db = edao.fetchByIdEqp(equipment.getId());
 		if(db!=null) {
 			ResponseStructure<Equipment> m=new ResponseStructure<Equipment>();
-			m.setData(db);
+			m.setData(edao.updateEquipment(equipment));
 			m.setMessage("updated successfully");
 			m.setStatus(HttpStatus.CREATED.value());
 			 return new ResponseEntity<ResponseStructure<Equipment>>(m,HttpStatus.CREATED);
